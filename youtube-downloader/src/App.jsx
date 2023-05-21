@@ -1,15 +1,36 @@
 import React, { useState } from "react";
 import Footer from "./Footer";
 
+
 function App() {
   const [url, setUrl] = useState("");
   const [format, setFormat] = useState("mp3");
   const [formatOptionsOpen, setFormatOptionsOpen] = useState(false);
+  let serverURL = 'http://localhost:4000';
 
-  const handleConvert = () => {
-    console.log(`URL: ${url}`);
-    window.location.href = `/download?URL=${url}&format=${format}`;
+  async function downloadMp(query) {
+    const res = await fetch(`${serverURL}/download?URL=${url}&format=${format}`);
+    if (res.status === 200) {
+      var a = document.createElement("a");
+      a.href = `${serverURL}/download?URL=${query}&format=${format}`;
+      a.setAttribute("download", "");
+      a.click();
+    } else if (res.status === 400) {
+      alert("Invalid URL");
+    }
+  }
+  
+
+  const handleConvert = async () => {
+    try {
+      console.log(`URL: ${url}`);
+      await downloadMp(url);
+    } catch (error) {
+      console.error(error);
+      alert("An error occurred while converting the video.");
+    }
   };
+  
 
   const handleInputChange = (e) => {
     setUrl(e.target.value);
