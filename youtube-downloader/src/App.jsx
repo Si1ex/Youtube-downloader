@@ -8,7 +8,7 @@ function App() {
 
   const handleConvert = () => {
     console.log(`URL: ${url}`);
-    window.location.href = `http://localhost:4000/download?URL=${url}&format=${format}`;
+    window.location.href = `/download?URL=${url}&format=${format}`;
   };
 
   const handleInputChange = (e) => {
