@@ -6,14 +6,15 @@ function App() {
   const [url, setUrl] = useState("");
   const [format, setFormat] = useState("mp3");
   const [formatOptionsOpen, setFormatOptionsOpen] = useState(false);
-  let serverURL = 'http://localhost:4000';
+  let serverURL = 'https://youtube-downloader-flax.vercel.app/api';
 
   async function downloadMp(url) {
-    var a = document.createElement("a");
+    var a = document.createElement('a');
     a.href = `${serverURL}/download?URL=${url}&format=${format}`;
-    a.setAttribute("download", "");
+    a.setAttribute('download', '');
     a.click();
   }
+  
   
   
 
