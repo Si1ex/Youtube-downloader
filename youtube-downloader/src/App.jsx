@@ -12,7 +12,7 @@ function App() {
     const res = await fetch(`${serverURL}/download?URL=${url}&format=${format}`);
     if (res.status === 200) {
       var a = document.createElement("a");
-      a.href = `${serverURL}/download?URL=${query}&format=${format}`;
+      a.href = `${serverURL}/download?URL=${url}&format=${format}`;
       a.setAttribute("download", "");
       a.click();
     } else if (res.status === 400) {
