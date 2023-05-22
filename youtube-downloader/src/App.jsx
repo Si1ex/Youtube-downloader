@@ -8,17 +8,13 @@ function App() {
   const [formatOptionsOpen, setFormatOptionsOpen] = useState(false);
   let serverURL = 'http://localhost:4000';
 
-  async function downloadMp(query) {
-    const res = await fetch(`${serverURL}/download?URL=${url}&format=${format}`);
-    if (res.status === 200) {
-      var a = document.createElement("a");
-      a.href = `${serverURL}/download?URL=${url}&format=${format}`;
-      a.setAttribute("download", "");
-      a.click();
-    } else if (res.status === 400) {
-      alert("Invalid URL");
-    }
+  async function downloadMp(url) {
+    var a = document.createElement("a");
+    a.href = `${serverURL}/download?URL=${url}&format=${format}`;
+    a.setAttribute("download", "");
+    a.click();
   }
+  
   
 
   const handleConvert = async () => {
