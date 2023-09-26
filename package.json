@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "eslint-config-react-app": "^7.0.1"
+    "eslint-config-react-app": "^7.0.1",
+    "ytdl-core": "^4.11.5"
   }
 }
