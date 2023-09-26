@@ -15,7 +15,6 @@ app.get('/download', (req, res) => {
     res.header('Content-Disposition', `attachment; filename="file.${format}"`);
   
     ytdl(URL, {
-      filter: 'audioonly',
       quality: 'highestaudio',
       format: format,
     }).pipe(res);
