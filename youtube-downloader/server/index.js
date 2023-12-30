@@ -14,12 +14,13 @@ app.get('/download', async (req, res) => {
     const URL = req.query.URL;
     const format = req.query.format || 'mp3';
 
-    res.header('Content-Disposition', `attachment; filename="file.${format}"`);
+    const videoInfo = await ytdl.getInfo(URL);
+    const title = videoInfo.videoDetails.title;
 
-    // Set the Content-Type based on the format
+    res.header('Content-Disposition', `attachment; filename="${title}.${format}"`);
     res.header('Content-Type', format === 'mp3' ? 'audio/mpeg' : 'video/mp4');
 
-    await ytdl(URL, {
+    ytdl(URL, {
       quality: 'highestaudio',
       format: format,
     }).pipe(res);
